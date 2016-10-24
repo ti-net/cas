@@ -1,0 +1,151 @@
+/* CSS Document */
+body{
+	height:100%;
+	/* background:#c5ccde url(../images/bodyBg.jpg) repeat-x; */
+}
+.innerBody{
+	width:694px;
+	height:334px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:-230px 0px 0px -350px;
+}
+.contentWrapper{
+	width:694px;
+	height:295px;
+	border:1px #acc2d9 solid;
+	background:#fff;
+	padding:1px;
+	margin:0px auto;
+}
+.innerContent{
+	height:295px;
+	/* background:url(../images/logoInBg.jpg) repeat-x; */
+}
+.contHeader{
+	width:668px;
+	height:55px;
+	margin:0px auto;
+	/* background:url(../images/headerBor.jpg) repeat-x bottom; */
+}
+.contHeader img{
+	margin:14px auto 0px;
+}
+.contHeader span{
+	font-family: 黑体;
+	font-size:22px;
+	margin-left:10px;
+	vertical-align: bottom;
+}
+.contBody{
+	width:668px;
+	height:240px;
+	margin:4px auto 0px;
+}
+.contFooter{
+	width:668px;
+	height:28px;
+	margin:6px auto 0px;
+	text-align:center;
+	color:#333333;
+}
+.footerBg{
+	width:698px;
+	height:48px;
+	margin:0px auto;
+	/* background:url(../images/logoFooterBg.jpg) no-repeat; */
+}
+.contFooter a,.contFooter span{
+	line-height:28px;
+	color:#333333;
+	text-decoration:none;
+	
+}
+.contBody ul{
+	width:300px;
+	margin:0px auto 0px;
+	padding-top:25px;
+}
+.contBody ul li{
+	height:45px;
+}
+.contBody li b{
+	display:block;
+	float:left;
+	width:60px;
+	display:inline;
+	line-height:45px;
+}
+
+
+.un{
+	float:left;
+	display:inline;
+	width:193px;
+	height:29px;
+	border:1px #bfcadb solid;
+	/* background:#e0e6ed url(../images/userIcon.gif) no-repeat 5px 6px; */
+	padding:0px 0px 0px 25px;
+	margin:7px 0px 0px 0px;
+}
+.un input{
+	width:188px;
+	border:0px;
+	height:24px;
+	background:none;
+	font-size:15px;
+	font-weight:bold;
+	color:#6281a6;
+	padding:5px 4px 0px 0px;	
+}
+.pw{
+	float:left;
+	display:inline;
+	width:193px;
+	height:29px;
+	border:1px #bfcadb solid;
+	/* background:#fff url(../images/pswIcon.gif) no-repeat 5px 6px; */
+	font-size:15px;
+	font-weight:bold;
+	padding:0px 0px 0px 25px;
+	margin:7px 0px 0px 0px;
+}
+.pw input{
+	width:188px;
+	border:0px;
+	height:24px;
+	background:none;
+	font-size:15px;
+	font-weight:bold;
+	color:#6281a6;
+	padding:4px 4px 0px 0px;
+	overflow:visible;	
+}
+
+.yan{
+	float:left;
+	display:inline;
+	width:80px;
+	height:21px;
+	border:1px #bfcadb solid;
+	background:#fff;
+	margin:7px 0px 0px 0px;
+	padding:6px 4px 0px 4px;
+	font-size:15px;
+	font-weight:bold;
+	color:#6281a6;
+}
+.but{
+	border:1px #4f8ed5 solid;
+	padding:1px;
+	height:26px;
+	line-height:25px;
+	overflow:visible;
+	/* background:#98c5f5 url(../images/inButBg.gif) repeat-x; */
+	color:#fff;
+	padding:0px 8px 0px 8px;
+	margin:6px 0px 0px 0px;
+	cursor:pointer;
+}
+

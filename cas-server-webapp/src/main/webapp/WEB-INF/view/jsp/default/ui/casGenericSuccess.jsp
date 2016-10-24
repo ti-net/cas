@@ -24,5 +24,10 @@
     <p><spring:message code="screen.success.success" /></p>
     <p><spring:message code="screen.success.security" /></p>
   </div>
+  <div>
+    <a href="http://172.16.0.181:7070/cas/logout?service=http://172.16.0.181:7070/cas/login">logout</a>
+  	<a href="http://test.ti-net.com.cn:8080/">CRM</a>
+  	<a href="http://test.ti-net.com.cn:8080/">boss2</a>
+  </div>  
 <jsp:directive.include file="includes/bottom.jsp" />
 

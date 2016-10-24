@@ -45,6 +45,40 @@
        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
+	<!-- Define the DB Connection -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	 	<property name="driverClassName" value="org.postgresql.Driver" />
+	  	<property name="url" value="jdbc:postgresql://172.16.203.205:5432/AUTH" />
+	  	<property name="username" value="ccic_DEV" />
+	  	<property name="password" value="ccic_DEV" />
+	</bean>
+ 
+     <!-- Define the encode method-->
+     <!--<bean id="passwordEncoder" 
+       class="org.jasig.cas.authentication.handler.DefaultPasswordEncoder" autowire="byName">     
+      <constructor-arg value="MD5"/> 
+     </bean>
+    <bean id="passwordEncoder" class="org.jasig.cas.authentication.handler.DefaultPasswordEncoder"
+      c:encodingAlgorithm="MD5" p:characterEncoding="UTF-8"/> -->
+      
+  	<bean id="passwordEncoder" class="org.jasig.cas.authentication.handler.DefaultPasswordEncoder">
+  		<constructor-arg index="0" value="MD5"/>
+  		<property name="characterEncoding" value="UTF-8"/>
+  	</bean>    
+      
+ 
+    <!--   class="org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler"
+    <bean id="jdbcAuthenticationHandler" class="com.tinet.cas.auth.CasJdbcUsernamePasswordAuthenticationHandler"
+      p:dataSource-ref="dataSource" p:passwordEncoder-ref="passwordEncoder" 
+      p:sql="select entity_pwd as pwd from entity where entity_name=? and status != 4"
+    /> -->
+
+    <bean id="jdbcAuthenticationHandler" class="com.tinet.cas.authentication.handler.CasJdbcUsernamePasswordAuthenticationHandler">
+    	<property name="dataSource" ref="dataSource"/>
+    	<property name="passwordEncoder" ref="passwordEncoder"/>
+    	<property name="sql" value=" select entity_pwd as pwd from entity where entity_name=? and status != 4 "/>
+    </bean>
+
     <!--
        | The authentication manager defines security policy for authentication by specifying at a minimum
        | the authentication handlers that will be used to authenticate credential. While the AuthenticationManager
@@ -61,7 +95,8 @@
                    | set its name to something other than its default name (typically the simple class name).
                    -->
                 <entry key-ref="proxyAuthenticationHandler" value-ref="proxyPrincipalResolver" />
-                <entry key-ref="primaryAuthenticationHandler" value-ref="primaryPrincipalResolver" />
+                <!-- <entry key-ref="primaryAuthenticationHandler" value-ref="primaryPrincipalResolver" /> -->
+                <entry key-ref="jdbcAuthenticationHandler" value-ref="primaryPrincipalResolver" />
             </map>
         </constructor-arg>
 
@@ -90,7 +125,7 @@
     <!-- Required for proxy ticket mechanism. -->
     <bean id="proxyAuthenticationHandler"
           class="org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler"
-          p:httpClient-ref="httpClient" />
+          p:httpClient-ref="httpClient" p:requireSecure="false"/>
 
     <!--
        | TODO: Replace this component with one suitable for your enviroment.

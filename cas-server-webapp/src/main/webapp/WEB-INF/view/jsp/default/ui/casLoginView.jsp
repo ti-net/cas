@@ -18,135 +18,122 @@
     under the License.
 
 --%>
-<jsp:directive.include file="includes/top.jsp" />
+<%--
 
-<c:if test="${not pageContext.request.secure}">
-  <div id="msg" class="errors">
-    <h2>Non-secure Connection</h2>
-    <p>You are currently accessing CAS over a non-secure connection.  Single Sign On WILL NOT WORK.  In order to have single sign on work, you MUST log in over HTTPS.</p>
-  </div>
-</c:if>
+    Licensed to Jasig under one or more contributor license
+    agreements. See the NOTICE file distributed with this work
+    for additional information regarding copyright ownership.
+    Jasig licenses this file to you under the Apache License,
+    Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License.  You may obtain a
+    copy of the License at the following location:
 
-<div class="box" id="login">
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+--%>
+<!DOCTYPE html>
+
+<%@ page pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="pragma" content="no-cache"> 
+  <meta http-equiv="cache-control" content="no-cache"> 
+  <meta http-equiv="expires" content="0">   
+  
+  <title>天润融通</title>
+  <spring:theme code="standard.custom.css.file" var="customCssFile" />
+  <link rel="stylesheet" href="<c:url value="${customCssFile}" />" />
+  <link rel="stylesheet" type="text/css" href="css/base.css" />
+  <link rel="icon" href="<c:url value="/favicon.ico" />" type="image/x-icon" />
+  <link rel="stylesheet" type="text/css" href="css/logoIn.css" />
+  <script src="<c:url value="js/jquery-1.4.2.js" />" type="text/javascript" ></script>
+  
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+  <![endif]-->
+</head>
+<body id="cas" style="background:#c5ccde;">
+<div class="wrapper">
+<div class="innerWrapper">
+<div class="bodyWrapper">
+<div class="innerBody">
+	<div class="contentWrapper">
+		<div class="innerContent">
+
+			<div class="contHeader" style="background:url(images/headerBor.jpg) repeat-x bottom;">
+				<img src="images/logo.png" alt="天润融通" /><span>统一登录系统</span>
+			</div>
+			<div class="contBody">
   <form:form method="post" id="fm1" commandName="${commandName}" htmlEscape="true">
+	<ul>
+		<li>
+		<b for="username">用户名:</b>
+		<div class="un" style="background:#e0e6ed url(images/userIcon.gif) no-repeat 5px 6px;">
+	      <c:choose>
+	        <c:when test="${not empty sessionScope.openIdLocalId}">
+	          <strong>${sessionScope.openIdLocalId}</strong>
+	          <input type="hidden" id="username" name="username" value="${sessionScope.openIdLocalId}" />
+	        </c:when>
+	        <c:otherwise>
+	          <spring:message code="screen.welcome.label.netid.accesskey" var="userNameAccessKey" />
+	          <form:input cssClass="required" cssErrorClass="error" id="username" size="25" tabindex="1" accesskey="${userNameAccessKey}" path="username" autocomplete="off" htmlEscape="true" />
+	        </c:otherwise>
+	      </c:choose>
+      	</div>
+      	</li>
+		<li>
+			<b for="password">密&nbsp;&nbsp;&nbsp;码:</b>
+			<div class="pw" style="background:#fff url(images/pswIcon.gif) no-repeat 5px 6px;">
 
-    <form:errors path="*" id="msg" cssClass="errors" element="div" htmlEscape="false" />
-  
-    <h2><spring:message code="screen.welcome.instructions" /></h2>
-  
-    <section class="row">
-      <label for="username"><spring:message code="screen.welcome.label.netid" /></label>
-      <c:choose>
-        <c:when test="${not empty sessionScope.openIdLocalId}">
-          <strong>${sessionScope.openIdLocalId}</strong>
-          <input type="hidden" id="username" name="username" value="${sessionScope.openIdLocalId}" />
-        </c:when>
-        <c:otherwise>
-          <spring:message code="screen.welcome.label.netid.accesskey" var="userNameAccessKey" />
-          <form:input cssClass="required" cssErrorClass="error" id="username" size="25" tabindex="1" accesskey="${userNameAccessKey}" path="username" autocomplete="off" htmlEscape="true" />
-        </c:otherwise>
-      </c:choose>
-    </section>
-    
-    <section class="row">
-      <label for="password"><spring:message code="screen.welcome.label.password" /></label>
-      <%--
-      NOTE: Certain browsers will offer the option of caching passwords for a user.  There is a non-standard attribute,
-      "autocomplete" that when set to "off" will tell certain browsers not to prompt to cache credentials.  For more
-      information, see the following web page:
-      http://www.technofundo.com/tech/web/ie_autocomplete.html
-      --%>
-      <spring:message code="screen.welcome.label.password.accesskey" var="passwordAccessKey" />
-      <form:password cssClass="required" cssErrorClass="error" id="password" size="25" tabindex="2" path="password"  accesskey="${passwordAccessKey}" htmlEscape="true" autocomplete="off" />
-    </section>
-    
-    <section class="row check">
-      <input id="warn" name="warn" value="true" tabindex="3" accesskey="<spring:message code="screen.welcome.label.warn.accesskey" />" type="checkbox" />
-      <label for="warn"><spring:message code="screen.welcome.label.warn" /></label>
-    </section>
-    
+      			<spring:message code="screen.welcome.label.password.accesskey" var="passwordAccessKey" />
+      			<form:password cssClass="required" cssErrorClass="error" id="password" size="25" tabindex="2" path="password"  accesskey="${passwordAccessKey}" htmlEscape="true" autocomplete="off" />
+    		</div>
+    	</li>
+		<li>
+			<b>验证码:</b>
+			<input type="text" id="securityCode" name="securityCode" class="yan" maxlength="4"/>
+			<img id="securityCodeImg" src="securityCode" width="80" height="25" style="margin: 10px 0 0 10px;" />
+     	</li>
+     	<li>
+      		<b>&nbsp;</b>
+			<input class="btn-submit but" name="submit" style="background:#98c5f5 url(images/inButBg.gif) repeat-x;" accesskey="l" value="登录" tabindex="4" type="submit"/>
+     	</li>
+    </ul>
     <section class="row btn-row">
       <input type="hidden" name="lt" value="${loginTicket}" />
-      <input type="hidden" name="execution" value="${flowExecutionKey}" />
+      <input type="hidden" name="execution" value="${flowExecutionKey}"/>
       <input type="hidden" name="_eventId" value="submit" />
 
-      <input class="btn-submit" name="submit" accesskey="l" value="<spring:message code="screen.welcome.button.login" />" tabindex="4" type="submit" />
-      <input class="btn-reset" name="reset" accesskey="c" value="<spring:message code="screen.welcome.button.clear" />" tabindex="5" type="reset" />
     </section>
+    <form:errors path="*" id="msg" cssClass="errors" element="div" htmlEscape="false" />
   </form:form>
+  </div></div>
+  </div></div></div></div>
 </div>
-  
-<div id="sidebar">
-  <div class="sidebar-content">
-    <p><spring:message code="screen.welcome.security" /></p>
-    
-    <div id="list-languages">
-      <%final String queryString = request.getQueryString() == null ? "" : request.getQueryString().replaceAll("&locale=([A-Za-z][A-Za-z]_)?[A-Za-z][A-Za-z]|^locale=([A-Za-z][A-Za-z]_)?[A-Za-z][A-Za-z]", "");%>
-      <c:set var='query' value='<%=queryString%>' />
-      <c:set var="xquery" value="${fn:escapeXml(query)}" />
-      
-      <h3>Languages:</h3>
-      
-      <c:choose>
-        <c:when test="${not empty requestScope['isMobile'] and not empty mobileCss}">
-          <form method="get" action="login?${xquery}">
-            <select name="locale">
-              <option value="en">English</option>
-              <option value="es">Spanish</option>
-              <option value="fr">French</option>
-              <option value="ru">Russian</option>
-              <option value="nl">Nederlands</option>
-              <option value="sv">Svenska</option>
-              <option value="it">Italiano</option>
-              <option value="ur">Urdu</option>
-              <option value="zh_CN">Chinese (Simplified)</option>
-              <option value="zh_TW">Chinese (Traditional)</option>
-              <option value="de">Deutsch</option>
-              <option value="ja">Japanese</option>
-              <option value="hr">Croatian</option>
-              <option value="cs">Czech</option>
-              <option value="sl">Slovenian</option>
-              <option value="pl">Polish</option>
-              <option value="ca">Catalan</option>
-              <option value="mk">Macedonian</option>
-              <option value="fa">Farsi</option>
-              <option value="ar">Arabic</option>
-              <option value="pt_PT">Portuguese</option>
-              <option value="pt_BR">Portuguese (Brazil)</option>
-            </select>
-            <input type="submit" value="Switch">
-          </form>
-        </c:when>
-        <c:otherwise>
-          <c:set var="loginUrl" value="login?${xquery}${not empty xquery ? '&' : ''}locale=" />
-          <ul>
-            <li class="first"><a href="${loginUrl}en">English</a></li>
-            <li><a href="${loginUrl}es">Spanish</a></li>
-            <li><a href="${loginUrl}fr">French</a></li>
-            <li><a href="${loginUrl}ru">Russian</a></li>
-            <li><a href="${loginUrl}nl">Nederlands</a></li>
-            <li><a href="${loginUrl}sv">Svenska</a></li>
-            <li><a href="${loginUrl}it">Italiano</a></li>
-            <li><a href="${loginUrl}ur">Urdu</a></li>
-            <li><a href="${loginUrl}zh_CN">Chinese (Simplified)</a></li>
-            <li><a href="${loginUrl}zh_TW">Chinese (Traditional)</a></li>
-            <li><a href="${loginUrl}de">Deutsch</a></li>
-            <li><a href="${loginUrl}ja">Japanese</a></li>
-            <li><a href="${loginUrl}hr">Croatian</a></li>
-            <li><a href="${loginUrl}cs">Czech</a></li>
-            <li><a href="${loginUrl}sl">Slovenian</a></li>
-            <li><a href="${loginUrl}ca">Catalan</a></li>
-            <li><a href="${loginUrl}mk">Macedonian</a></li>
-            <li><a href="${loginUrl}fa">Farsi</a></li>
-            <li><a href="${loginUrl}ar">Arabic</a></li>
-            <li><a href="${loginUrl}pt_PT">Portuguese</a></li>
-            <li><a href="${loginUrl}pt_BR">Portuguese (Brazil)</a></li>
-            <li class="last"><a href="${loginUrl}pl">Polish</a></li>
-          </ul>
-        </c:otherwise>
-      </c:choose>
-    </div>
-  </div>
-</div>
-
-<jsp:directive.include file="includes/bottom.jsp" />
+<script type="text/javascript">
+	$(function(){
+		$("#username").focus();
+		$("#securityCodeImg").click(function(){
+			$(this).attr("src","securityCode?" + Math.random());
+		});
+		
+		//$("#fm1").attr("action", "cas/login?timestamp=" + (new Date().valueOf()))
+		
+	});
+</script>
+</body>
+</html>

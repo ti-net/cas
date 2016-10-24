@@ -169,6 +169,15 @@
     <url-pattern>/authorizationFailure.html</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+  	<servlet-name>securityCode</servlet-name>
+  	<servlet-class>com.tinet.cas.servlet.SecurityCodeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+ 	<servlet-name>securityCode</servlet-name>
+ 	<url-pattern>/securityCode</url-pattern>
+  </servlet-mapping>
+
   <session-config>
     <!-- Default to 5 minute session timeouts -->
     <session-timeout>5</session-timeout>

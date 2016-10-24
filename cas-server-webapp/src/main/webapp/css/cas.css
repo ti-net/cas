@@ -42,22 +42,22 @@ header, #content { background: #fff; -webkit-box-shadow: 0px 0px 20px 0px rgba(0
 }
 
 header { padding-top: 10px; }
-header #logo { display: block; width: 118px; height: 31px; text-indent: -999em; background: url(../images/ja-sig-logo.gif) no-repeat; margin: 0 0 10px 10px; }
+header #logo { display: block; width: 118px; height: 31px; text-indent: -999em; /* background: url(../images/ja-sig-logo.gif) no-repeat; */ margin: 0 0 10px 10px; }
 header h1 { background: #210F7A; color: white; padding: 1.4em 1.4em; font-size: 2em; font-weight: normal; }
 
 #content { padding: 10px; overflow: hidden; }
 
-#msg { padding: 20px; margin-bottom: 10px; }
+#msg { /* padding: 10px; */ margin-bottom: 10px; }
 #msg h2 { font-size: 1.4em; margin-bottom: 1em; }
-#msg.errors { border: 1px dotted #BB0000; color: #BB0000; padding-left: 100px; background: url(../images/error.gif) no-repeat 20px center; }
-#msg.success { border: 1px dotted #390; color: #390; padding-left: 100px; background: url(../images/confirm.gif) no-repeat 20px center; }
-#msg.info { border: 1px dotted #008; color: #008; padding-left: 100px; background: url(../images/info.gif) no-repeat 20px center; }
-#msg.question { border: 1px dotted #390; color: #390; padding-left: 100px; background: url(../images/question.png) no-repeat 20px center; }
-#msg.warn { border: 1px dotted #960; color: #960; padding-left: 100px; background: #ffbc8f url(../images/info.gif) no-repeat 20px center; }
+#msg.errors { /* border: 1px dotted #BB0000; */ color: #BB0000; padding-left: 250px; /* background: url(../images/error.gif) no-repeat 20px center; */ }
+#msg.success { border: 1px dotted #390; color: #390; padding-left: 100px; /* background: url(../images/confirm.gif) no-repeat 20px center; */ }
+#msg.info { border: 1px dotted #008; color: #008; padding-left: 100px; /* background: url(../images/info.gif) no-repeat 20px center;  */}
+#msg.question { border: 1px dotted #390; color: #390; padding-left: 100px; /* background: url(../images/question.png) no-repeat 20px center; */ }
+#msg.warn { border: 1px dotted #960; color: #960; padding-left: 100px; /* background: #ffbc8f url(../images/info.gif) no-repeat 20px center; */ }
 #msg.warn .message { color: black; margin: 1em; font-size: 1.4em }
 
 #login { width: 320px; float: left; margin-right: 20px; }
-#fm1 { padding: 20px; background: #eee; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+/* #fm1 { padding: 20px; background: #eee; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; } */
 #fm1 h2 { font-size: 1.4em; font-weight: normal; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid #DDDDDD; }
 #fm1 .row { margin-bottom: 10px; }
 #fm1 .row label { display: block; color: #777777; }
