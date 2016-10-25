@@ -110,20 +110,11 @@ public class AuthenticationViaFormAction {
     public final Event submit(final RequestContext context, final Credential credential,
             final MessageContext messageContext) throws Exception {
     	
-    	
-    	
     	final HttpServletRequest request = WebUtils.getHttpServletRequest(context);  
 		HttpSession session = request.getSession();
 		
-		String sessionCode = (String) session.getAttribute(SecurityCodeUtil.SECURITY_CODE);
-		session.removeAttribute("SecurityCodeUtil.SECURITY_CODE");
+		UsernamePasswordSecurityCodeCredential upsc = (UsernamePasswordSecurityCodeCredential)credential; 
 		
-		UsernamePasswordSecurityCodeCredential upsc = (UsernamePasswordSecurityCodeCredential)credential;  
-		String securityCode = upsc.getSecurityCode();
-		if(!StringUtils.hasText(securityCode) || !StringUtils.hasText(sessionCode) || !securityCode.equals(sessionCode)){  
-			messageContext.addMessage(new MessageBuilder().error().code("authenticationFailure.SecurityCodeAuthenticationException").build());
-			return newEvent(ERROR, new SecurityCodeAuthenticationException());
-		}
         // Validate login ticket
         final String authoritativeLoginTicket = WebUtils.getLoginTicketFromFlowScope(context);
         final String providedLoginTicket = WebUtils.getLoginTicketFromRequest(context);
@@ -171,6 +162,15 @@ public class AuthenticationViaFormAction {
             if (this.hasWarningMessages) {
                 return newEvent(SUCCESS_WITH_WARNINGS);
             }
+            
+    		String sessionCode = (String) session.getAttribute(SecurityCodeUtil.SECURITY_CODE);
+    		session.removeAttribute(SecurityCodeUtil.SECURITY_CODE);
+    		String securityCode = upsc.getSecurityCode();
+    		if(!StringUtils.hasText(securityCode) || !StringUtils.hasText(sessionCode) || !securityCode.equals(sessionCode)){  
+    			messageContext.addMessage(new MessageBuilder().error().code("authenticationFailure.SecurityCodeAuthenticationException").build());
+    			return newEvent(ERROR, new SecurityCodeAuthenticationException());
+    		}
+            
             return newEvent(SUCCESS);
         } catch (final AuthenticationException e) {
             return newEvent(AUTHENTICATION_FAILURE, e);
