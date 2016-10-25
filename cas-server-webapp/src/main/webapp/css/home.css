@@ -1,0 +1,125 @@
+/* CSS Document */
+
+body{	
+	background:#c5ccde url(../images/bodyBg.jpg) repeat-x;
+	height:100%;
+	font-family:'Verdana','ËÎÌו';
+	font-size:12px;
+}
+.hzh_con{
+	position:relative;
+	top:60px;
+	width:698px;
+	height:334px;
+	margin:0 auto;
+}
+.hzh_con .top{
+	width:100%;height:23px;
+	background:url(../images/dl_top_corner.png);
+}
+.hzh_con .bottom{
+	width:100%;height:12px;
+	background:url(../images/dl_bottom_corner.png);
+}
+.hzh_con .bottom_white{
+	width:100%;height:23px;
+	background:url(../images/dl_bottom_corner_white.png);
+}
+.hzh_con .bl{
+	width:100%;height:20px;
+	background:#fff;
+}
+
+.hzh_con .logo{
+	width:100%;height:48px;
+	background:#fff;	
+}
+.hzh_con .logo img{
+	margin-left:50px;
+	margin-top:10px;
+}
+.hzh_con .logo a{	
+	float:right;
+	margin:20px 50px 0 0;
+	text-decoration:none;
+	color:blue;
+}
+.hzh_con .logo span{
+	float:right;
+	margin:20px 10px 0 0;
+}
+.home_con{width:100%;background-color:#fff;}
+.home_con .left{
+	float:left;
+	margin-left:25px;
+	width:460px;
+	height:auto;
+}
+.home_con .left .t{
+	width:100%;height:19px;
+	background:#fff url(../images/dl_home_lt_bg.jpg) no-repeat;
+}
+.home_con .left .c{
+	width:100%;
+	padding:10px 0;
+	background:#fff url(../images/dl_home_lc_bg.jpg) 1px repeat-y;
+}
+.home_con .left .b{
+	width:100%;height:19px;
+	background:#fff url(../images/dl_home_lb_bg.jpg) no-repeat;
+}
+.home_con .left .c ul{
+	margin-left:30px;
+}
+.home_con .left .c ul li{
+	padding:2px 0;
+}
+.home_con .left .c p{
+	width:300px;
+	padding:3px 8px 4px;
+	padding-top:6px\0;
+	background-color:#f7f7f3;
+	text-align:left;
+	word-wrap:break-word; word-spacing:normal; 
+	display:inline-block;
+	line-height:16px;
+}
+.home_con .left .c label{
+	width:70px;
+	vertical-align:top;
+	text-align:right;
+	padding-right:10px;
+	padding-top:1px;
+	padding-top:4px\0;
+	display:inline-block;
+	color:#999;
+}
+.home_con .right{
+	float:right;
+	margin-right:25px;
+	width:180px;
+}
+.home_con .right .t{
+	width:100%;height:16px;
+	background:#fff url(../images/dl_home_rt_bg.jpg) no-repeat;
+}
+.home_con .right .c{
+	width:100%;
+	padding:10px 0;
+	background:#fff url(../images/dl_home_rc_bg.jpg) -2px repeat-y;
+}
+.home_con .right .c ul{
+	margin-left:30px;
+}
+.home_con .right .c a{
+	font-size:14px;
+	font-weight:bold;
+	color:blue;
+}
+.home_con .right .b{
+	width:100%;height:19px;
+	background:#fff url(../images/dl_home_rb_bg.jpg) -2px no-repeat;
+}
+.home_clear{
+	clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0;
+}

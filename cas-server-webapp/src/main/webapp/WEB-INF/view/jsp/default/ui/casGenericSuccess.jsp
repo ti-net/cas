@@ -1,33 +1,50 @@
-<%--
+<%@ page contentType="text/html;charset=UTF-8"%>
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>天润系统管理平台 - 个人中心</title>
+	<link rel="bookmark" href="favicon.ico" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="css/base.css" />
+	<link rel="stylesheet" type="text/css" href="css/home.css" />
+	<script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+  </head>  
+  <body>
 
-    Licensed to Jasig under one or more contributor license
-    agreements. See the NOTICE file distributed with this work
-    for additional information regarding copyright ownership.
-    Jasig licenses this file to you under the Apache License,
-    Version 2.0 (the "License"); you may not use this file
-    except in compliance with the License.  You may obtain a
-    copy of the License at the following location:
+    <div class="hzh_con">
+		<div class="top"></div>
+		<div class="logo">
+			<img src="images/logo.png"/>
+			<a href="http://172.16.0.181:7070/cas/logout?service=http://172.16.0.181:7070/cas/login" target="_top">退出</a>
+			<span><!-- 您好： --></span>
+		</div>
+		<div class="bl"></div>
+		<div class="home_con">
+			<div class="left">
+				<div class="t"></div>
+				<div class="c">
+					<ul>
+						<li><label><!-- 角色: --></label><p></p></li>
+						<li><label><!-- 全称: --></label><p></p></li>
+					</ul>
+				</div>
+				<div class="b"></div>
+			</div>
+			<div class="right">
+				<div class="t"></div>
+				<div class="c">
+					<ul>
+						<li><a href="http://test.ti-net.com.cn:8080/crm" target="_blank">CRM客户中心</a></li>
+						<li><a href="http://boss2.ti-net.com.cn/app/index.jsp" target="_blank">C2营帐中心</a></li>
+					</ul>
+				</div>
+				<div class="b"></div>
+			</div>
+			<div class="home_clear"></div>
+		</div>
+		<div class="bottom_white"></div>
+	</div>
 
-      http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
-
---%>
-<jsp:directive.include file="includes/top.jsp" />
-  <div id="msg" class="success">
-    <h2><spring:message code="screen.success.header" /></h2>
-    <p><spring:message code="screen.success.success" /></p>
-    <p><spring:message code="screen.success.security" /></p>
-  </div>
-  <div>
-    <a href="http://172.16.0.181:7070/cas/logout?service=http://172.16.0.181:7070/cas/login">logout</a>
-  	<a href="http://test.ti-net.com.cn:8080/">CRM</a>
-  	<a href="http://test.ti-net.com.cn:8080/">boss2</a>
-  </div>  
-<jsp:directive.include file="includes/bottom.jsp" />
-
+  </body>
+</html>
