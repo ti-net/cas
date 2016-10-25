@@ -13,7 +13,11 @@ import org.jasig.cas.authentication.UsernamePasswordCredential;
 import org.jasig.cas.authentication.principal.SimplePrincipal;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
-
+/**
+ * 
+ * @author wangll
+ *
+ */
 public class CasJdbcUsernamePasswordAuthenticationHandler extends AbstractJdbcUsernamePasswordAuthenticationHandler {
 
     @NotNull
@@ -46,7 +50,7 @@ public class CasJdbcUsernamePasswordAuthenticationHandler extends AbstractJdbcUs
     /**
      * @param sql The sql to set.
      */
-    public void setSql(final String sql) {
+    public final void setSql(final String sql) {
         this.sql = sql;
     }
 }
