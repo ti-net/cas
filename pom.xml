@@ -429,14 +429,9 @@ pTSqrOnmqmUUnopqmvummmmmmUUnopqmvummmmmmUUA1jJ
             <exclude>**/*.doc</exclude>
             <exclude>**/*.jmx</exclude>
             <exclude>**/.tern-project</exclude>
-            
-            <exclude>**/SecurityCodeAuthenticationException.java</exclude>
-            <exclude>**/base.css</exclude>
-            <exclude>**/logoIn.css</exclude>
-            <exclude>**/CasJdbcUsernamePasswordAuthenticationHandler.java</exclude>
-            <exclude>**/jquery-1.4.2.js</exclude>
-            <exclude>**/SecurityCodeServlet.java</exclude>
-            <exclude>**/SecurityCodeUtil.java</exclude>
+
+            <exclude>**/cas/**</exclude>
+            <exclude>**/webapp/**</exclude>
           </excludes>
         </configuration>
         <executions>
@@ -995,8 +990,8 @@ pTSqrOnmqmUUnopqmvummmmmmUUnopqmvummmmmmUUA1jJ
     <hsqldb.version>2.0.0</hsqldb.version>
     <joda-time.version>2.2</joda-time.version>
 	
-    <project.build.sourceVersion>1.6</project.build.sourceVersion>
-    <project.build.targetVersion>1.6</project.build.targetVersion>
+    <project.build.sourceVersion>1.7</project.build.sourceVersion>
+    <project.build.targetVersion>1.7</project.build.targetVersion>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.site.deployDirectory>/tmp/cas-deploy-site</project.site.deployDirectory>
