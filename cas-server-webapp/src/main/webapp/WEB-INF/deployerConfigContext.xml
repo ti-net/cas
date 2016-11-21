@@ -46,12 +46,30 @@
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<!-- Define the DB Connection -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	 	<property name="driverClassName" value="org.postgresql.Driver" />
-	  	<property name="url" value="jdbc:postgresql://172.16.203.205:5432/AUTH" />
-	  	<property name="username" value="ccic_DEV" />
-	  	<property name="password" value="ccic_DEV" />
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<!-- 指定连接数据库的驱动-->
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>		
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${jdbc.druid.initialSize}"/>		
+		<property name="minIdle" value="${jdbc.druid.minIdle}"/>
+		<property name="maxActive" value="${jdbc.druid.maxActive}"/>	
+		<!-- 连接检测 -->
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<!-- 配置监控统计和防御sql注入的filter -->
+		<property name="filters" value="stat" />
 	</bean>
+	
+	
  
      <!-- Define the encode method-->
      <!--<bean id="passwordEncoder" 
@@ -79,6 +97,24 @@
     	<property name="sql" value=" select entity_pwd as pwd from entity where entity_name=? and status != 4 "/>
     </bean>
 
+    <bean id="authWhiteIpService" class="com.tinet.cas.dao.impl.AuthWhiteIpServiceImpl">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="entityService" class="com.tinet.cas.dao.impl.EntityServiceImpl">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="logWebCallService" class="com.tinet.cas.dao.impl.LogWebCallServiceImp">
+    	<property name="casProperty" ref="casProperty"/>
+    </bean>    
+    
+    <bean id="casProperty" class="com.tinet.cas.util.CasPropertyPlaceHolderConfigurer">
+    	<property name="webCallVerifyUrl" value="${webcall.verify.url}"/>
+    	<property name="webCallVerifyAppid" value="${webcall.verify.appid}"/>
+    	<property name="webCallVerifyToken" value="${webcall.verify.token}"/>
+    </bean>
+    
     <!--
        | The authentication manager defines security policy for authentication by specifying at a minimum
        | the authentication handlers that will be used to authenticate credential. While the AuthenticationManager

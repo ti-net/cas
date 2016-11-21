@@ -53,6 +53,11 @@ public class UsernamePasswordSecurityCodeCredential implements Credential, Seria
 	@NotNull
 	@Size(min = 4, message = "required.securityCode")
 	private String securityCode;
+	
+	@NotNull
+	@Size(min = 4, message = "required.voiceCode")
+	private String voiceCode;
+	
 
     /** Default constructor. */
     public UsernamePasswordSecurityCodeCredential() {}
@@ -102,6 +107,14 @@ public class UsernamePasswordSecurityCodeCredential implements Credential, Seria
 
 	public final void setSecurityCode(String securityCode) {
 		this.securityCode = securityCode;
+	}
+
+	public String getVoiceCode() {
+		return voiceCode;
+	}
+
+	public void setVoiceCode(String voiceCode) {
+		this.voiceCode = voiceCode;
 	}
 
 	/** {@inheritDoc} */

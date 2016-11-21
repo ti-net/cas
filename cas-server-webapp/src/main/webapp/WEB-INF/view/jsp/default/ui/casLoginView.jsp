@@ -105,7 +105,7 @@
     	</li>
 		<li>
 			<b>验证码:</b>
-			<input type="text" id="securityCode" name="securityCode" class="yan" maxlength="4"/>
+			<input type="text" id="securityCode" name="securityCode" class="yan" maxlength="4" tabindex="3"/>
 			<img id="securityCodeImg" src="securityCode" width="80" height="25" style="margin: 10px 0 0 10px;" />
      	</li>
      	<li>
