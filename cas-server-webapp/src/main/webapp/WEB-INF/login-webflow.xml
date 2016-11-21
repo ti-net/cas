@@ -102,6 +102,25 @@
     <transition on="successWithWarnings" to="showMessages" />
     <transition on="authenticationFailure" to="handleAuthenticationFailure" />
     <transition on="error" to="generateLoginTicket" />
+    <transition on="notwhiteip" to="authWhiteIpView" />
+  </action-state>
+  
+  <view-state id="authWhiteIpView" view="authWhiteIpWebCallView" model="credential">
+	<binder>
+        <binding property="voiceCode"/>
+   	</binder>
+    <on-entry>
+    	<set name="viewScope.commandName" value="'credential'" />
+  	</on-entry>
+	<transition on="submitVoiceCode" bind="true" validate="true" to="authVoiceCode">
+            <evaluate expression="authVoiceCodeForIpAction.doBind(flowRequestContext, flowScope.credential)" />
+    </transition>
+  </view-state>
+
+  <action-state id="authVoiceCode">
+  	<evaluate expression="authVoiceCodeForIpAction.authVoiceCode(flowRequestContext, flowScope.credential, messageContext)" />
+  	<transition on="success" to="sendTicketGrantingTicket" />
+  	<transition on="error" to="generateLoginTicket" />
   </action-state>
 
   <view-state id="showMessages" view="casLoginMessageView">

@@ -232,7 +232,11 @@
   <bean id="authenticationViaFormAction" class="com.tinet.cas.web.flow.AuthenticationViaFormAction"
         p:centralAuthenticationService-ref="centralAuthenticationService"
         p:warnCookieGenerator-ref="warnCookieGenerator"
-        p:ticketRegistry-ref="ticketRegistry"/>
+        p:ticketRegistry-ref="ticketRegistry"
+        p:authWhiteIpService-ref="authWhiteIpService"
+        p:entityService-ref="entityService"
+        p:logWebCallService-ref="logWebCallService"/>
+        
 
   <bean id="authenticationExceptionHandler" class="org.jasig.cas.web.flow.AuthenticationExceptionHandler" />
 
@@ -264,4 +268,10 @@
         c:cas-ref="centralAuthenticationService"
         c:tgtCookieGenerator-ref="ticketGrantingTicketCookieGenerator"
         c:warnCookieGenerator-ref="warnCookieGenerator"/>
+        
+  <bean id="authVoiceCodeForIpAction" class="com.tinet.cas.web.flow.AuthVoiceCodeForIpAction"/>      
+        
+        
+        
+        
 </beans>
