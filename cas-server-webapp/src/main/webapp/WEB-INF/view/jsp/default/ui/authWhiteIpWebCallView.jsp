@@ -52,8 +52,8 @@
 											</li>
 											<li>
 												<b>&nbsp;</b>
-												<input type="submit" class="but" value="确定"  name="submit"/>&nbsp;&nbsp;&nbsp;&nbsp;
-												<input id="btnBack" type="button" class="but" value="返回" onclick="location.href='login'"/>
+												<input type="submit" class="but" style="background:#98c5f5 url(images/inButBg.gif) repeat-x;" value="确定"  name="submit"/>&nbsp;&nbsp;&nbsp;&nbsp;
+												<input id="btnBack" type="button" style="background:#98c5f5 url(images/inButBg.gif) repeat-x;" class="but" value="返回" onclick="location.href='login'"/>
 											</li>
 											<li>
 												<font color="gray">由于您当前IP无法登录，需要输入语音验证码。<br/>请接听手机语音播报，并在5分钟内验证，过期无效！</font>
