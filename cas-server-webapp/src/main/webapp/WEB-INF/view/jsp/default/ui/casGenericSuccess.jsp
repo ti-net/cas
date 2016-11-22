@@ -16,7 +16,7 @@
 		<div class="top"></div>
 		<div class="logo">
 			<img src="images/logo.png"/>
-			<a href="http://172.16.0.181:7070/cas/logout?service=http://172.16.0.181:7070/cas/login" target="_top">退出</a>
+			<a href="javascript:void(0);" onclick="logoutSSO()" target="_top">退出</a>
 			<span><!-- 您好： --></span>
 		</div>
 		<div class="bl"></div>
@@ -47,4 +47,11 @@
 	</div>
 
   </body>
+  <script type="text/javascript">
+  	function logoutSSO(){
+  		var href = window.location.href;
+  		window.location.href = href.replace("login", "logout") + "?service=" + href.replace("logout", "login");
+  	}
+  </script>
+  
 </html>
