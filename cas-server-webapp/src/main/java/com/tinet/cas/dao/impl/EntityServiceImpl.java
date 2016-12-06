@@ -13,8 +13,8 @@ public class EntityServiceImpl extends CasAbstractJdbcHandler implements EntityS
 	public Entity getByName(String name) {
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
 		BeanPropertyRowMapper<Entity> rowMapper = new BeanPropertyRowMapper<>(Entity.class);
-		Entity entity = jdbcTemplate.queryForObject(" SELECT * FROM \"public\".\"entity\" where " + " full_name = '"
-				+ name + "' ", rowMapper);
+		Entity entity = jdbcTemplate.queryForObject(" SELECT * FROM \"public\".\"entity\" where " + " \"entity_name\" = '"
+				+ name + "' and \"status\" != 4 ", rowMapper);
 		return entity;
 	}
 }
