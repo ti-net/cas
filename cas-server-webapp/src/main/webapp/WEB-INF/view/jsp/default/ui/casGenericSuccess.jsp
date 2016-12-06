@@ -36,7 +36,7 @@
 				<div class="c">
 					<ul>
 						<li><a href="http://test.ti-net.com.cn:8080/crm" target="_blank">CRM客户中心</a></li>
-						<li><a href="http://boss2.ti-net.com.cn/app/index.jsp" target="_blank">C2营帐中心</a></li>
+						<li><a href="http://test.ti-net.com.cn:8080/boss2" target="_blank">C2营帐中心</a></li>
 					</ul>
 				</div>
 				<div class="b"></div>
