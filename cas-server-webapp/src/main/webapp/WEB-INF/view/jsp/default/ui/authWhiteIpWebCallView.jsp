@@ -9,9 +9,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>天润融通</title>
-	<link rel="bookmark" href="images/favicon.ico" />
-	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 	<link rel="stylesheet" type="text/css" href="css/base.css" />
 	<link rel="stylesheet" type="text/css" href="css/logoIn.css" />
 	<script type="text/javascript" src="js/jquery-1.4.2.js"></script>
@@ -27,6 +24,10 @@
 			padding:4px 4px 4px 4px;
 			font-size:12px;
 			color:gray;
+		}
+		#msg.errors{
+			color: #BB0000;
+			padding-left: 60px;
 		}
 	</style>
 </head>
@@ -56,7 +57,14 @@
 												<input id="btnBack" type="button" style="background:#98c5f5 url(images/inButBg.gif) repeat-x;" class="but" value="返回" onclick="location.href='login'"/>
 											</li>
 											<li>
-												<font color="gray">由于您当前IP无法登录，需要输入语音验证码。<br/>请接听手机语音播报，并在5分钟内验证，过期无效！</font>
+												<form:errors path="*" id="msg" cssClass="errors" element="div" htmlEscape="false" />
+											</li>
+											<li>
+												<font color="gray">
+													由于您当前IP无法登录，需要输入语音验证码，<br/>
+													请接听手机语音播报，并在5分钟内验证，过期无效！<br/>
+													语音验证码输入错误5次将重新登录！
+												</font>
 											</li>
 										    <input type="hidden" name="lt" value="${loginTicket}" />
 										    <input type="hidden" name="execution" value="${flowExecutionKey}"/>

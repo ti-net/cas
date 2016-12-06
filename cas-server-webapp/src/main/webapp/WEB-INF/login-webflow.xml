@@ -121,6 +121,7 @@
   	<evaluate expression="authVoiceCodeForIpAction.authVoiceCode(flowRequestContext, flowScope.credential, messageContext)" />
   	<transition on="success" to="sendTicketGrantingTicket" />
   	<transition on="error" to="generateLoginTicket" />
+  	<transition on="codeError" to="authWhiteIpView" />
   </action-state>
 
   <view-state id="showMessages" view="casLoginMessageView">

@@ -1,6 +1,8 @@
 package com.tinet.cas.web.flow;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,6 +18,7 @@ import org.springframework.webflow.core.collection.LocalAttributeMap;
 import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContext;
 
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tinet.cas.authentication.UsernamePasswordSecurityCodeCredential;
@@ -27,6 +30,8 @@ public class AuthVoiceCodeForIpAction {
 	public static final String SUCCESS = "success";
 	/** Error result. */
 	public static final String ERROR = "error";
+	/** Code Error result. */
+	public static final String CODE_ERROR = "codeError";
 
 	/**
 	 * Binder that allows additional binding of form object beyond Spring
@@ -52,21 +57,39 @@ public class AuthVoiceCodeForIpAction {
 		UsernamePasswordSecurityCodeCredential upsc = (UsernamePasswordSecurityCodeCredential) credential;
 
 		String result = (String) session.getAttribute("notwhiteip_voicecode_result");
-
+		
 		ObjectMapper mapper = new ObjectMapper();
-		JsonNode resultNode = mapper.readValue(result, JsonNode.class);
-		Long voiceCodeTimestamp = resultNode.get("timestamp").longValue();
+		JavaType javaType = mapper.getTypeFactory().constructParametrizedType(LinkedHashMap.class, LinkedHashMap.class,
+				String.class, Object.class);
+		
+		Map<String, Object> resultMap = mapper.readValue(result, javaType);
+		Long voiceCodeTimestamp = Long.parseLong(resultMap.get("timestamp").toString());
 
 		if (new Date().getTime() - voiceCodeTimestamp <= 300000) {
-			if (upsc.getVoiceCode().equals(resultNode.get("value").textValue())) {
+			if (upsc.getVoiceCode().equals(resultMap.get("value").toString())) {
+				session.removeAttribute("notwhiteip_voicecode_result");
 				return newEvent(SUCCESS);
 			} else {
-				messageContext.addMessage(new MessageBuilder().error()
-						.code("authenticationFailure.VoiceCodeAuthenticationException").build());
-				return newEvent(ERROR, new VoiceCodeAuthenticationException());
+				Integer errorcount = new Integer(1);
+				if(resultMap.get("errorcount") != null){
+					errorcount = Integer.parseInt(resultMap.get("errorcount").toString());
+					errorcount++;
+				}
+				if(errorcount <= 4){
+					resultMap.put("errorcount", errorcount);
+					result = mapper.writeValueAsString(resultMap);
+					request.getSession().setAttribute("notwhiteip_voicecode_result", result);
+					
+					messageContext.addMessage(new MessageBuilder().error().arg(errorcount)
+							.code("authenticationFailure.VoiceCodeAuthenticationException").build());
+					return newEvent(CODE_ERROR, new VoiceCodeAuthenticationException());
+					
+				} else {
+					messageContext.addMessage(new MessageBuilder().error().code("语音验证码输入错误次数过多！").build());
+					return newEvent(ERROR, new Exception());					
+				}
 			}
 		} else {
-			// 此处少一个 5分钟超时异常处理
 			messageContext.addMessage(new MessageBuilder().error().code("语音验证码超时!").build());
 			return newEvent(ERROR, new Exception());
 		}
